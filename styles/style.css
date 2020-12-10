@@ -8,19 +8,25 @@
     outline: none;
 }
 :root {
-    --gray: #E5E5E5;
+    --grey: #E5E5E5;
     --white: #FFF;
     --ndWhite: #a9a9aa;
     --dWhite: #DDD;
     --nWhite: #FDFFF7;
     --black: #000;
     --lBlack: #222;
-    --Bmode: #172121;
+    --Bmode: rgb(27, 27, 27);
     --nBlack: #50514F;
 
     --dBlue: #00A;
+    --lBlue: #6d6dff;
     --ddBlue: #05057e;
-    --headText: #3E1929;
+    --headText: rgb(26, 26, 116);
+    --headTextL: #a4a4c9;
+    --btnddtrans: rgba(101, 101, 172, 0.43);
+    --btnddBlue: rgba(101, 101, 172, 0.83);
+    --inGrey:  rgba(229, 229, 229,.4);
+    --btnGrey: rgba(173, 164, 164, 0.767);
 }
 html, body {
     width: 100%;
@@ -47,7 +53,7 @@ header > nav > div.logo {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
-    width: 170px;
+    width: 100px;
     position: relative;
 }header > nav > div.logo > a {
     z-index: 100;
@@ -56,6 +62,7 @@ header > nav > div.logo > a > img {
     width: 60px;
     height: auto;
 }
+/*
 header > nav > div.logo > span {
     font-family: 'Nerko One', Verdana, Geneva, Tahoma, sans-serif; 
     font-size: 35px;
@@ -70,15 +77,7 @@ header > nav > div.logo > span {
     padding: 1px 0 1px 15px;
     border-radius: 0 30px 30px 0;
 }
-header > nav > div.title {
-    padding: 0;
-    width: 330px;
-    font-size: 28px;
-    font-family: Langar, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 700;
-    color: var(--headText);
-    word-spacing: 10px;
-}
+*/
 header > nav > div.theme {
     width: calc(100px - 32px);
     padding: 0;
@@ -99,13 +98,23 @@ header > nav > div.theme > div.toggle-cnt > span.img-circle-cnt {
     justify-content: center;
     align-items: center;
     top: -8px;
-    left: 0;
     border-radius: 50%;
     cursor: pointer;
 }
+.to-left {
+    left: 0;
+}
+.to-right {
+    right: 0;
+}
 header > nav > div.theme > div.toggle-cnt > span.img-circle-cnt > i {
-    color: gold;
     font-size: 30px;
+}
+header > nav > div.theme > div.toggle-cnt > span.img-circle-cnt > i.fas.fa-sun {
+    color: #ffd700;
+}
+header > nav > div.theme > div.toggle-cnt > span.img-circle-cnt > i.fas.fa-moon {
+    color: var(--grey);
 }
 main {
     height: 86vh;
@@ -115,14 +124,36 @@ main {
     align-items: center;
     padding: 5% 10%;
 }
-main > div.search-bar {
+@media (max-width: 450px) {
+    main {
+        padding: 5% 4%;
+    }
+}
+main > section.head {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+main > section.head > div.title {
+    padding: 0;
+    width: 280px;
+    font-size: 23px;
+    font-family: Langar, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    color: var(--headText);
+    margin-bottom: 30px;
+    text-align: center;
+}
+main > section.head > div.search-bar {
     margin-bottom: 40px;
     display: flex;
     justify-content: space-between;
     height: 45px;
+    position: relative;
 }
-main > div.search-bar > input {
-    width: calc(100% - 150px);
+main > section.head > div.search-bar > input {
+    width: 100% ;
     height: 100%;
     border-radius: 50px;
     color: var(--lBlack);
@@ -130,31 +161,36 @@ main > div.search-bar > input {
     font-family: Montserrat, Arial, Helvetica, sans-serif;
     font-weight: 500;
     padding-left: 25px;
-    background: var(--gray);
+    background: var(--inGrey);
     border: none;
-    transition: .4s ease-in;
+    border: 2px solid var(--btnddBlue);
+    opacity: .6;
+    transition: .4s ease-in-out;
 }
-main > div.search-bar > input:hover,
-main > div.search-bar > input:focus {
-    border: 2px solid var(--dBlue);
+main > section.head > div.search-bar > input:hover,
+main > section.head > div.search-bar > input:active {
+    opacity: 1;
 }
-main > div.search-bar > button.search-button {
+main > section.head > div.search-bar > button.search-button {
     width: 130px;
+    position: absolute;
+    right: 0;
+    top: 0;
     height: 100%;
     cursor: pointer;
     border-radius: 50px;
-    font-size: 18px;
+    font-size: 20px;
     font-family: Montserrat, Arial, Helvetica, sans-serif;
     font-weight: 700;
-    background: var(--ddBlue);
-    color: var(--gray);
+    background: var(--btnddtrans);
+    color: var(--ddBlue);
     border: none;
-    opacity: .6;
     transition: .5s ease-in-out;
 }
-main > div.search-bar > button.search-button:hover {
-    opacity: 1;
+main > section.head > div.search-bar > button.search-button:hover {
+    background: var(--btnddBlue);
 }
-main > section.result-container {
-    display: none;
+main > section.head > section.result-container {
+    border: 1px solid red;
+    padding: 3% 4%;
 }
