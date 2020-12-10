@@ -130,6 +130,10 @@ main > div.search-bar > input {
     font-family: Montserrat, Arial, Helvetica, sans-serif;
     font-weight: 500;
     padding-left: 25px;
+    background: var(--gray);
+    transition: .4s ease-in;
+}
+main > div.search-bar > input:hover {
     border: 2px solid var(--dBlue);
 }
 main > div.search-bar > button.search-button {
@@ -144,6 +148,10 @@ main > div.search-bar > button.search-button {
     color: var(--gray);
     border: none;
     opacity: .6;
+    transition: .5s ease-in-out;
+}
+main > div.search-bar > button.search-button:hover {
+    opacity: 1;
 }
 main > section.result-container {
     display: none;
