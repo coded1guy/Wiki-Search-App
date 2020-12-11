@@ -344,8 +344,8 @@ footer > span {
 }
 @media (max-width: 600px) {
     main {
-        padding: 5% 4%;
-        height: 74.5vh;
+        padding: 7% 4%;
+        height: 74vh;
     }
     footer {
         flex-direction: column;
