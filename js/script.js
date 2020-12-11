@@ -72,14 +72,6 @@ let nSearch = document.querySelector('.n-search');
     }
 }
 
-
-
-
-let resultTitle = document.getElementById('resultTitle');
-let resultBody = document.getElementById('resultBody');
-let resultBody2 = document.getElementById('resultBody2');
-let link = document.querySelector('.link');
-
 // CALLING THE SEARCH FUNCTION
 let search = async() => {
     let mData, title, resSpans = "", searchQ = searchInput.value;
@@ -90,11 +82,15 @@ let search = async() => {
     } else {
         const fetchItem = await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=30&srsearch=%27' + searchQ);
         let data = await fetchItem.json();
+        // USING THE DATA GOTTEN
         console.log(data.query.search[0].snippet);
         mData = data.query;
         title = data.query.search[0].title;
+        // SOME STYLINGS TO CHANGE THE DOM ENVIRONMENT
         document.querySelector('.head').style.display = "none";
         answerPane.style.display = "block";
+        
+        // ADDING ITEM FROM THE DATA RESULT TO THE RESULTPANE
         for(var i = 0; i < 5; i++) {
             resSpans += `
                 <div class="res-cnt">
@@ -108,7 +104,7 @@ let search = async() => {
         }
     }
 
-
+    // UPDATING THE RESULT PANE
     let template = `
         <div class="control">
             <button class="n-search" onclick="refresh()">New Search</button>
@@ -125,6 +121,7 @@ let search = async() => {
 
     answerPane.innerHTML = template;
 }
+// BUTTON FUNCTIONS FOR THE RESULT PANE
 let learnMore = () => {
     let searchQ = searchInput.value;
     searchQ = searchQ.split(" ").join("_");
