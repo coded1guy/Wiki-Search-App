@@ -144,4 +144,5 @@ let learnMore = () => {
 let refresh = () => {
     answerPane.style.display = "none";
     document.querySelector('.head').style.display = "flex";
+    searchInput.value = "";
 }
