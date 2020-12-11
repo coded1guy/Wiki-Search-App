@@ -13,6 +13,7 @@ let answerPane = document.querySelector('.result-container');
 let footer = document.querySelector('footer');
 let footIcon = document.querySelector('.socials');
 let cp = document.querySelector('footer > span');
+let nSearch = document.querySelector('.n-search');
 
 // DOM STYLING
 {
@@ -26,6 +27,8 @@ let cp = document.querySelector('footer > span');
             title.style.color = "var(--headTextL)";
             searchInput.classList.add('inp-dmode');
             searchInput.classList.remove('inp-lmode');
+            answerPane.classList.add('result-dMode');
+            answerPane.classList.remove('result-lMode');
             footer.style.background = "var(--Bmode)";
             footIcon.classList.add('icD');
             footIcon.classList.remove('icL');
@@ -39,6 +42,8 @@ let cp = document.querySelector('footer > span');
             title.style.color = "var(--headText)";
             searchInput.classList.add('inp-lmode');
             searchInput.classList.remove('inp-dmode');
+            answerPane.classList.add('result-lMode');
+            answerPane.classList.remove('result-dMode');
             footer.style.background = "var(--dWhite)";
             footIcon.classList.add('icL');
             footIcon.classList.remove('icD');
@@ -90,7 +95,7 @@ let search = async() => {
         title = data.query.search[0].title;
         document.querySelector('.head').style.display = "none";
         answerPane.style.display = "block";
-        for(var i = 0; i <= 5; i++) {
+        for(var i = 0; i < 5; i++) {
             resSpans += `
                 <div class="res-cnt">
                     <span class="index">${(i + 1)}. </span>
@@ -115,7 +120,7 @@ let search = async() => {
 
     let template = `
         <div class="control">
-            <button class="n-search">New Search</button>
+            <button class="n-search" onclick="refresh()">New Search</button>
             <button onclick="learnMore()">Learn More</button>
         </div> 
         <hr>
@@ -134,4 +139,9 @@ let learnMore = () => {
     searchQ = searchQ.split(" ").join("_");
     let gotoL = "https://en.wikipedia.org/wiki/" + searchQ;
     window.location.assign(gotoL);
+}
+
+let refresh = () => {
+    answerPane.style.display = "none";
+    document.querySelector('.head').style.display = "flex";
 }
