@@ -9,6 +9,10 @@ let sl = document.querySelector('.toggle-cnt');
     let mode = "light";
 let title = document.querySelector('.title');
 let searchInput = document.querySelector('#search');
+let answerPane = document.querySelector('.result-container');
+let footer = document.querySelector('footer');
+let footIcon = document.querySelector('.socials');
+let cp = document.querySelector('footer > span');
 
 // DOM STYLING
 {
@@ -20,6 +24,12 @@ let searchInput = document.querySelector('#search');
             main.style.background = "var(--lBlack)";
             sl.style.background = "var(--lBlue)";
             title.style.color = "var(--headTextL)";
+            searchInput.classList.add('inp-dmode');
+            searchInput.classList.remove('inp-lmode');
+            footer.style.background = "var(--Bmode)";
+            footIcon.classList.add('icD');
+            footIcon.classList.remove('icL');
+            cp.style.color = "var(--dWhite)";
         } else if(mode === "dark") {
             console.log(mode);
             navbar.style.background = "var(--dWhite)";
@@ -27,6 +37,12 @@ let searchInput = document.querySelector('#search');
             main.style.background = "var(--white)";
             sl.style.background = "var(--dBlue)";
             title.style.color = "var(--headText)";
+            searchInput.classList.add('inp-lmode');
+            searchInput.classList.remove('inp-dmode');
+            footer.style.background = "var(--dWhite)";
+            footIcon.classList.add('icL');
+            footIcon.classList.remove('icD');
+            cp.style.color = "var(--icBlack)";
         }
     }
     changer.onclick = () => {
@@ -61,7 +77,7 @@ let link = document.querySelector('.link');
 
 // CALLING THE SEARCH FUNCTION
 let search = async() => {
-    let searchQ = searchInput.value;
+    let mData, title, resSpans = "", searchQ = searchInput.value;
     searchQ = searchQ.split(" ").join("_");
     if (searchQ === ""){
         alert('please type a search item in the search bar');
@@ -70,7 +86,21 @@ let search = async() => {
         const fetchItem = await fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=30&srsearch=%27' + searchQ);
         let data = await fetchItem.json();
         console.log(data.query.search[0].snippet);
-        console.log(data.query.search[1].snippet);
+        mData = data.query;
+        title = data.query.search[0].title;
+        document.querySelector('.head').style.display = "none";
+        answerPane.style.display = "block";
+        for(var i = 0; i <= 5; i++) {
+            resSpans += `
+                <div class="res-cnt">
+                    <span class="index">${(i + 1)}. </span>
+                    <span class="m-cnt">
+                        ${mData.search[i].snippet}
+                    </span>
+                </div>
+            `;
+            console.log(mData.search[i].snippet);
+        }
     }
     // //Result output
     // resultTitle.innerText =  data.query.search[0].title;
@@ -81,6 +111,23 @@ let search = async() => {
 
     // //Extra Styling
     // document.querySelector('.resultContent').style.backgroundColor = "White";
+
+
+    let template = `
+        <div class="control">
+            <button class="n-search">New Search</button>
+            <button onclick="learnMore()">Learn More</button>
+        </div> 
+        <hr>
+        <div class="ans-cont">
+            <h2>${searchInput.value}</h2>
+            <div>
+                ${resSpans}
+            </div>
+        </div>
+    `
+
+    answerPane.innerHTML = template;
 }
 let learnMore = () => {
     let searchQ = searchInput.value;
@@ -88,11 +135,3 @@ let learnMore = () => {
     let gotoL = "https://en.wikipedia.org/wiki/" + searchQ;
     window.location.assign(gotoL);
 }
-
-
-let template = ` 
-    <div class="ans-cont">
-        <i class="fas fa-caret-down"></i>
-    </div>
-    <button onclick="learnMore()">Learn More</button>
-`
