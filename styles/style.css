@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     outline: none;
+    border: none;
     text-decoration: none;
 }
 :root {
@@ -127,11 +128,6 @@ main {
     align-items: center;
     padding: 3% 10%;
 }
-@media (max-width: 450px) {
-    main {
-        padding: 5% 4%;
-    }
-}
 main > section.head {
     display: flex;
     justify-content: center;
@@ -163,7 +159,7 @@ main > section.head > div.search-bar > input {
     font-family: Montserrat, Arial, Helvetica, sans-serif;
     font-weight: 500;
     padding-left: 25px;
-    background: var(--inGrey);
+    background: rgba(0,0,0, .3);
     border: 2px solid transparent;
     transition: .4s ease-in-out;
 }
@@ -200,7 +196,6 @@ main > section.head > div.search-bar > button.search-button:hover {
     background: var(--btnddBlue);
 }
 main > section.result-container {
-    background: rgba(225,225,225, .5);
     padding: 3% 4%;
     border-radius: 20px;
     font-family: Montserrat, Arial, Helvetica, sans-serif;
@@ -208,25 +203,89 @@ main > section.result-container {
     height: 100%;
     display: none;
 }
-main > section.result-container::-webkit-scrollbar {
-    width: 12px;               /* width of the entire scrollbar */
+main > section.result-lMode {
+    background: rgba(225,225,225, .5);
+    color: var(--lBlack);
 }
-main > section.result-container::-webkit-scrollbar-track {
-    background: orange;        /* color of the tracking area */
+main > section.result-dMode {
+    background: rgba(0,0,0, .5);
+    color: var(--nWhite);
+}
+main > section.result-lMode::-webkit-scrollbar {
+    width: 14px;               /* width of the entire scrollbar */
+}
+main > section.result-lMode::-webkit-scrollbar-track {
+    background: rgba(0,0,0,.5);        /* color of the tracking area */
     border-radius: 20px;
 }
-main > section.result-container::-webkit-scrollbar-thumb {
-    background-color: blue;    /* color of the scroll thumb */
+main > section.result-lMode::-webkit-scrollbar-thumb {
+    background-color: var(--nWhite);    /* color of the scroll thumb */
     border-radius: 10px;       /* roundness of the scroll thumb */
-    border: 1px solid orange;  /* creates padding around scroll thumb */
+    border: 2px solid rgba(0,0,0,.5);  /* creates padding around scroll thumb */
 }
+main > section.result-dMode::-webkit-scrollbar {
+    width: 14px;               /* width of the entire scrollbar */
+}
+main > section.result-dMode::-webkit-scrollbar-track {
+    background: rgba(225,225,225,.8);        /* color of the tracking area */
+    border-radius: 20px;
+}
+main > section.result-dMode::-webkit-scrollbar-thumb {
+    background-color: var(--lBlack);    /* color of the scroll thumb */
+    border-radius: 10px;       /* roundness of the scroll thumb */
+    border: 2px solid rgba(225,225,225,.8);  /* creates padding around scroll thumb */
+}
+
+main > section.result-container > .control {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 0 0 3% 0;
+    justify-content: space-between;
+    align-items: center;
+}
+main > section.result-container > .control > button {
+    width: 130px;
+    height: 30px;
+    font-size: 17px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+.result-lMode > .control > button {
+    background: var(--btnddtrans);
+    color: var(--nBlack);
+}
+.result-lMode > .control > button:hover {
+    color: var(--icBlack);
+    background: var(--btnddBlue);
+}
+.result-dMode > .control > button {
+    background: rgba(0,0,0, .3);
+    color: var(--grey);
+}
+.result-dMode > .control > button:hover {
+    color: var(--nWhite);
+    background: rgba(0,0,0, .6);
+}
+.ans-cont > h2 {
+    margin: 10px 0;
+    font-size: 38px;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    color: var(--dBlue);
+}
+main > section.result-lMode .ans-cont > h2 { color: var(--ddBlue) }
+main > section.result-dMode .ans-cont > h2 { color: var(--lBlue); }
 .searchmatch {
     font-family: Poppins;
     font-weight: 500;
     font-size: 17px;
     line-height: 2;
 }
-
 .res-cnt {
     margin: 30px 0;
 }
@@ -277,4 +336,28 @@ footer > span {
 .s {
     font-size: 24px;
     margin-right: 4px;
+}
+@media (max-width: 450px) {
+    main {
+        padding: 5% 4%;
+    }
+}
+@media (max-width: 600px) {
+    main {
+        padding: 5% 4%;
+        height: 74.5vh;
+    }
+    footer {
+        flex-direction: column;
+        justify-content: center;
+        height: 13vh;
+        padding-top: 20px;
+    }
+    footer > div.socials {
+        width: 240px;
+        font-size: 23px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
