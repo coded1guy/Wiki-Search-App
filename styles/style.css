@@ -341,6 +341,9 @@ footer > span {
     main {
         padding: 0 4%;
     }
+    section.result-container {
+        padding: 0 4%;
+    }
 }
 @media (max-width: 450px) {
     main {
