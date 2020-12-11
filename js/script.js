@@ -107,15 +107,6 @@ let search = async() => {
             console.log(mData.search[i].snippet);
         }
     }
-    // //Result output
-    // resultTitle.innerText =  data.query.search[0].title;
-    // resultBody.innerHTML = "1. " + data.query.search[0].snippet;
-    // resultBody2.innerHTML = "2. " + data.query.search[1].snippet;
-    // link.href = "https://en.wikipedia.org/wiki/" + queryTerm;
-    // link.innerText = "Read More";
-
-    // //Extra Styling
-    // document.querySelector('.resultContent').style.backgroundColor = "White";
 
 
     let template = `
@@ -130,7 +121,7 @@ let search = async() => {
                 ${resSpans}
             </div>
         </div>
-    `
+    `;
 
     answerPane.innerHTML = template;
 }
